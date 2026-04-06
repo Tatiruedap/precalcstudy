@@ -1,0 +1,119 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--color-background-tertiary); }
+.planner { max-width: 860px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+.header { text-align: center; margin-bottom: 2rem; }
+.header h1 { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.header .exam-date { font-size: 14px; color: var(--color-text-secondary); display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; }
+.exam-badge { background: var(--color-background-danger); color: var(--color-text-danger); font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: var(--border-radius-md); }
+.week-nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 2rem; }
+.week-btn { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: var(--border-radius-md); cursor: pointer; transition: all 0.15s ease; font-family: var(--font-sans); }
+.week-btn:hover { background: var(--color-background-secondary); color: var(--color-text-primary); border-color: var(--color-border-primary); }
+.week-btn.active { background: #3C3489; border-color: #3C3489; color: #EEEDFE; }
+.week-section { display: none; animation: fadeIn 0.25s ease; }
+.week-section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.week-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: 1.25rem; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+.day-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.15s; }
+.day-card:hover { border-color: var(--color-border-secondary); }
+.day-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.1em; }
+.task-tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: var(--border-radius-md); width: fit-content; }
+.tag-blue { background: #E6F1FB; color: #0C447C; }
+.tag-teal { background: #E1F5EE; color: #085041; }
+.tag-purple { background: #EEEDFE; color: #3C3489; }
+.tag-coral { background: #FAECE7; color: #712B13; }
+.tag-amber { background: #FAEEDA; color: #633806; }
+.tag-green { background: #EAF3DE; color: #27500A; }
+.task-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); line-height: 1.35; }
+.task-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; flex: 1; }
+.exam-card { border-color: #F0997B; background: #FAECE7; }
+.exam-card .day-label { color: #993C1D; }
+.exam-card .task-name { color: #4A1B0C; }
+.exam-card .task-desc { color: #712B13; }
+@media (max-width: 500px) { .cards-grid { grid-template-columns: 1fr 1fr; } .week-btn { font-size: 12px; padding: 7px 13px; } }
+</style>
+
+<div class="planner">
+  <div class="header">
+    <div style="font-size: 12px; font-weight: 500; color: var(--color-text-tertiary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">AP Precalculus</div>
+    <h1>Study Plan</h1>
+    <div class="exam-date">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="2" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 1v2M11 1v2M1 6h14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Exam Day:
+      <span class="exam-badge">May 12</span>
+    </div>
+  </div>
+
+  <nav class="week-nav">
+    <button class="week-btn active" onclick="showWeek('w1',this)">Week 1</button>
+    <button class="week-btn" onclick="showWeek('w2',this)">Week 2</button>
+    <button class="week-btn" onclick="showWeek('w3',this)">Week 3</button>
+    <button class="week-btn" onclick="showWeek('w4',this)">Week 4</button>
+    <button class="week-btn" onclick="showWeek('wf',this)">Final Review</button>
+  </nav>
+
+  <div id="w1" class="week-section active">
+    <div class="week-title">Week 1 — Unit 1A + 1B · Polynomial and Rational Functions</div>
+    <div class="cards-grid">
+      <div class="day-card"><div class="day-label">Monday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 1</div><div class="task-desc">Work through Flipped Math Review Packet Part 1 for Unit 1 (Polynomial and Rational Functions).</div></div>
+      <div class="day-card"><div class="day-label">Tuesday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 2</div><div class="task-desc">Complete Flipped Math Review Packet Part 2.</div></div>
+      <div class="day-card"><div class="day-label">Wednesday</div><span class="task-tag tag-purple">Video + Cheat Sheet</span><div class="task-name">Video Review + Cheat Sheet</div><div class="task-desc">Watch a full review video for Unit 1 and create a cheat sheet summarizing key formulas, patterns, and concepts.</div></div>
+      <div class="day-card"><div class="day-label">Thursday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ Practice</div><div class="task-desc">Complete one Free Response Question focused on polynomial and rational functions.</div></div>
+    </div>
+  </div>
+
+  <div id="w2" class="week-section">
+    <div class="week-title">Week 2 — Unit 2A + 2B · Exponential and Logarithmic Functions</div>
+    <div class="cards-grid">
+      <div class="day-card"><div class="day-label">Monday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 1</div><div class="task-desc">Flipped Math Unit 2 review packet part 1.</div></div>
+      <div class="day-card"><div class="day-label">Tuesday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 2</div><div class="task-desc">Complete remaining review exercises.</div></div>
+      <div class="day-card"><div class="day-label">Wednesday</div><span class="task-tag tag-purple">Video + Cheat Sheet</span><div class="task-name">Video Review + Cheat Sheet</div><div class="task-desc">Watch a full review of exponential and logarithmic functions and create a cheat sheet.</div></div>
+      <div class="day-card"><div class="day-label">Thursday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ Practice</div><div class="task-desc">Solve an AP-style FRQ involving exponential or logarithmic models.</div></div>
+    </div>
+  </div>
+
+  <div id="w3" class="week-section">
+    <div class="week-title">Week 3 — Unit 3A + 3B · Trigonometric and Polar Functions</div>
+    <div class="cards-grid">
+      <div class="day-card"><div class="day-label">Monday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 1</div><div class="task-desc">Begin trigonometry review packet.</div></div>
+      <div class="day-card"><div class="day-label">Tuesday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 2</div><div class="task-desc">Finish trigonometry review exercises.</div></div>
+      <div class="day-card"><div class="day-label">Wednesday</div><span class="task-tag tag-purple">Video + Cheat Sheet</span><div class="task-name">Video Review + Cheat Sheet</div><div class="task-desc">Watch trig review video and summarize identities, graphs, and transformations.</div></div>
+      <div class="day-card"><div class="day-label">Thursday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ Practice</div><div class="task-desc">Complete one trigonometry FRQ.</div></div>
+    </div>
+  </div>
+
+  <div id="w4" class="week-section">
+    <div class="week-title">Week 4 — Unit 4A + 4B · Parametric Functions, Vectors, Matrices</div>
+    <div class="cards-grid">
+      <div class="day-card"><div class="day-label">Monday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 1</div><div class="task-desc">Begin review of parametric equations, conics, vectors, and matrices.</div></div>
+      <div class="day-card"><div class="day-label">Tuesday</div><span class="task-tag tag-blue">Review Packet</span><div class="task-name">Review Packet Part 2</div><div class="task-desc">Finish packet exercises.</div></div>
+      <div class="day-card"><div class="day-label">Wednesday</div><span class="task-tag tag-purple">Video + Cheat Sheet</span><div class="task-name">Video Review + Cheat Sheet</div><div class="task-desc">Watch unit review and summarize key concepts.</div></div>
+      <div class="day-card"><div class="day-label">Thursday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ Practice</div><div class="task-desc">Complete one FRQ involving parametric or vector-based problems.</div></div>
+    </div>
+  </div>
+
+  <div id="wf" class="week-section">
+    <div class="week-title">Final Review Week</div>
+    <div class="cards-grid">
+      <div class="day-card"><div class="day-label">Friday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ #1</div><div class="task-desc">Complete a full AP-style FRQ and check solutions.</div></div>
+      <div class="day-card"><div class="day-label">Saturday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ #2</div><div class="task-desc">Practice another FRQ under timed conditions.</div></div>
+      <div class="day-card"><div class="day-label">Sunday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ #3</div><div class="task-desc">Practice a third FRQ.</div></div>
+      <div class="day-card"><div class="day-label">Monday</div><span class="task-tag tag-teal">FRQ Practice</span><div class="task-name">FRQ #4</div><div class="task-desc">Final FRQ practice session.</div></div>
+      <div class="day-card"><div class="day-label">Tuesday</div><span class="task-tag tag-purple">Cheat Sheet</span><div class="task-name">Cheat Sheet Review</div><div class="task-desc">Review all cheat sheets created during the previous weeks.</div></div>
+      <div class="day-card"><div class="day-label">Wednesday</div><span class="task-tag tag-amber">Multiple Choice</span><div class="task-name">Multiple Choice Practice</div><div class="task-desc">Complete a set of AP-style multiple choice questions.</div></div>
+      <div class="day-card"><div class="day-label">Thursday</div><span class="task-tag tag-green">Targeted Review</span><div class="task-name">Targeted Review</div><div class="task-desc">Focus on trig identities, exponential/log rules, and rational function behavior.</div></div>
+      <div class="day-card exam-card"><div class="day-label">Exam Day · May 12</div><span class="task-tag tag-coral">AP Exam</span><div class="task-name">AP Precalculus Exam</div><div class="task-desc">Stay calm and apply everything you practiced. You've got this.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showWeek(id, btn) {
+  document.querySelectorAll('.week-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
